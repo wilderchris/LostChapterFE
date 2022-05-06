@@ -1,0 +1,156 @@
+<app-indexnavbar (searchKeyword)="setShowKeyowrd($event)"> </app-indexnavbar>
+
+  <body class="container">
+
+    <div class="header-title">
+      <p> <span style="font-weight: bold; font-size: larger; ">You Searched for: </span>
+         <span style="font-weight: bold; font-size: larger; color: #69626d;">{{showKeyword}}</span></p>
+    </div>
+
+    <div class="container py-4">
+       <h1 class="h2 fw-bold mb-1">Search Results</h1>
+       <nav aria-label="breadcrumb" role="navigation">
+          <ol class="breadcrumb px-0">
+             <li class="breadcrumb-item"><a href="#">Home</a></li>
+             <li class="breadcrumb-item"><a href="#">Category</a></li>
+             <li class="breadcrumb-item active">Books</li>
+          </ol>
+       </nav>
+    </div>
+    <section class="container">
+       <div class="row g-4 mb-4">
+          <aside class="col-lg-3">
+             <div class="accordion">
+
+                <div class="accordion-item">
+                   <h2 class="accordion-header"
+                       id="accordion_a000">
+                      <button class="accordion-button"
+                              type="button"
+                              data-bs-toggle="collapse"
+                              data-bs-target="#accordion_b000"
+                              aria-expanded="true"
+                              aria-controls="accordion_b000">Categories</button>
+                   </h2>
+                   <div id="accordion_b000"
+                        class="accordion-collapse collapse show"
+                        aria-labelledby="accordion_a000"
+                        data-bs-parent="#accordion_a000">
+                      <div class="accordion-body pt-1">
+                      <h1 style="color: black;">Author: </h1>
+                         <div class="form mb-3">
+                            <div class="input-group">
+                               <input type="text"
+                                      class="form-control"
+                                      aria-label="Search"
+                                      placeholder="Brandon Sanderson" />
+                               <button mat-raised-button color="primary">Search</button>
+                            </div>
+                         </div>
+
+                         <h1 style="color: black;">Genre:</h1>
+                         <mat-form-field appearance="fill">
+                           <mat-label>Genre:</mat-label>
+                           <mat-select [(value)]="selected">
+                            <mat-option value="option1">Adventure</mat-option>
+                            <mat-option value="option2">Novel</mat-option>
+                            <mat-option value="option3">Mistery</mat-option>
+                            <mat-option value="option4">Fiction</mat-option>
+                            <mat-option value="option5">NonFiction</mat-option>
+                            <mat-option value="option6">Science</mat-option>
+                            <mat-option value="option7">Technology</mat-option>
+                            <mat-option value="option8">Self Improvement</mat-option>
+                            <mat-option value="option9">International</mat-option>
+                            <mat-option value="option10">Education</mat-option>
+                            <mat-option value="option11">Action</mat-option>
+                            <mat-option value="option12">Horror</mat-option>
+                            <mat-option value="option13">Romance</mat-option>
+                            <mat-option value="option14">Comedy</mat-option>
+
+                           </mat-select>
+                         </mat-form-field>
+
+                         <br>
+                         <h1 style="color: black;">Published Year</h1>
+
+                         <div class="row row-cols-md-2 g-2 mb-3">
+                          <div class="col">
+                             <label style="color: black;">Min Year</label>
+                             <input class="form-control px-1"
+                                    placeholder="1400"
+                                    type="number" />
+                          </div>
+                          <div class="col text-end">
+                             <label style="color: black;">Max Year</label>
+                             <input
+                                    class="form-control px-1"
+                                    placeholder="2022"
+                                    type="number" />
+                          </div>
+                       </div>
+
+                       <button class="btn btn-primary w-100">Apply</button>
+
+                       <br>
+                       <br>
+
+                       <h1 style="color: black;">Publisher: </h1>
+                       <div class="form mb-3">
+                          <div class="input-group">
+                             <input type="text"
+                                    class="form-control"
+                                    aria-label="Search"
+                                    placeholder="Richard Shoemaker" />
+                             <button mat-raised-button color="primary">Search</button>
+                          </div>
+                       </div>
+
+                      </div>
+                   </div>
+                </div>
+
+                <br>
+                <div class="accordion-item mt-0">
+                </div>
+
+             </div>
+          </aside>
+
+          <main class="col-lg-9" >
+             <div class="row row-cols-4 row-cols-sm-3 row-cols-xl-4 mb-4 pb-4 g-5">
+
+                <div class="col" *ngFor="let item of showResults"> <!--*ngFor="let item of collection | paginate {itemsPerPage: 5, currentPage: p}">-->
+                      <img [src]="item.bookImage" (click)="onDisplayProduct(item.bookId)"  style="border-radius: 8px;width: 200px; height: 200px; position: relative;" alt="Placeholder">
+                      <br>
+                     <div class="book-title" style="margin: auto; color: black; text-align: center;"><strong>Book Title: </strong> {{  item.bookName}} <br>
+                      <span class="flex-grow-1" style="color: black; text-align: left; margin: auto;"><strong>Price:</strong> ${{item.bookPrice}}</span> <br>
+                      <br>
+
+                      <div >
+                        <!--Not needed-->
+                         <!-- <div style="display: flex; align-items: center; justify-content: center;">
+                            <a routerLink="/cart"> <button mat-raised-button color="primary" (click)="onAddToCart(item.bookId)">Add to cart
+                              <i class="material-icons">shopping_cart</i></button> </a>
+                         </div> -->
+
+
+                         <div *ngIf="errorMessage" id="error-search" class="text-danger">
+
+                          {{ errorMessage }}
+                        </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <nav>
+               <!-- <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="page = $event"></pagination-controls> -->
+
+
+             </nav>
+
+          </main>
+       </div>
+    </section>
+
+  </body>
+

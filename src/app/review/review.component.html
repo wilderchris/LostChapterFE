@@ -1,0 +1,52 @@
+
+
+<div class="reviewcard">
+    <button style="color:crimson" class="closedia" mat-button mat-dialog-close>X</button>
+    <h2 ></h2>
+  
+    <div class="mat-typography">
+      <mat-card class="review-card">
+        <mat-card-header>
+          <h1></h1><br>
+          <mat-card-title></mat-card-title>
+  
+          <mat-card-subtitle>Review Title<br>
+            <input id="revtitle" name="fieldName" ngDefaultControl matInput type="text"
+              [(ngModel)]='review.reviewTitle'><br>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>Review Text
+          <p>
+            <textarea name="fieldName" ngDefaultControl matInput id="revtext" [(ngModel)]='review.reviewText'></textarea>
+            <br>
+  
+<mat-label for="ratingOne">Plot Rating: </mat-label>       
+       <mat-slider id="slider1" thumbLabel name="ratingOne" [(ngModel)]="review.ratingOne" tickInterval="1" step="1" min="0" max="5" aria-label="units"></mat-slider>
+       <br>
+<mat-label for="ratingTwo"> Content Rating: </mat-label>       
+       <mat-slider id="slider2" thumbLabel name="ratingTwo" [(ngModel)]="review.ratingTwo" tickInterval="1" step="1" min="0" max="5" aria-label="units"></mat-slider>
+       <br>
+<mat-label for="ratingThree"> Time Rating: </mat-label>       
+       <mat-slider id="slider3" thumbLabel name="ratingThree" [(ngModel)]="review.ratingThree" tickInterval="1" step="1" min="0" max="5" aria-label="units"></mat-slider>
+          <!-- <form [formGroup]="form">
+            <ngx-star-rating id="revrate" name="fieldName" ngDefaultControl formControlName="ratingReview"
+              [(ngModel)]='review.ratingOne'></ngx-star-rating>
+            <div>Rating: {{review?.ratingOne}}</div>
+            
+          </form> -->
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button id="revsubbtn" type="button" (click)="sendRev()"  mat-dialog-close>Submit Review</button>
+        </mat-card-actions>
+      </mat-card>
+  
+    </div>
+  </div>
+  
+  <mat-label class="sample" type="text"> {{review.reviewTitle}}</mat-label><br>
+  <mat-label class="sample" type="text">{{review.reviewText}}</mat-label><br>
+  <mat-label class="sample" type="text">{{review.ratingOne}}</mat-label><br>
+  <mat-label class="sample" type="text">{{review.ratingTwo}}</mat-label><br>
+  <mat-label class="sample" type="text">{{review.ratingThree}}</mat-label><br>
+  <!-- <mat-label class="sample" type="text">{{review.book.bookId}}</mat-label><br> -->
+  <mat-label class="sample" type="text">{{review.user}}</mat-label><br>

@@ -1,0 +1,39 @@
+<div class="container">
+  <strong><h1 style="color: #0645AD; font-size: 21px;font-weight:bolder" >Featured Books</h1></strong>
+<br>
+<!--https://stackblitz.com/edit/ngx-slickjs?file=src%2Fapp%2Fapp.component.html-->
+<div class="slick-wrapper">
+  <div slickContainer #slickController="slick" [slickConfig]="config" >
+    <ng-container *ngIf="slickController.initialize" >
+      <div style = "cursor: pointer; display:flex; justify-content: center; flex-direction: column; align-items: center; margin: .5em;" class = "featured-item" slickItem *ngFor="let item of showResults">
+            <img id="product" [src]="item.bookImage"  (click)="onDisplayProduct(item)" style="border-radius: 8px;width: 200px; height: 200px; " class="p-10 mb-2">
+        
+
+          <div id="featuredbooks"
+          style="margin: auto; color: black;"><strong>Book Title: </strong> {{item.bookName}} <br>
+
+         </div>
+         <h3  class="salesPrice" style="margin: auto; color: black; ">Price: <span id="salesPrice">${{(item.bookPrice - (item.bookPrice * item.saleDiscountRate)) | number:'1.2-2' }}</span></h3>
+
+      </div>
+    </ng-container>
+
+  </div>
+
+</div>
+  <div style="margin: auto; padding: 10px; text-align: center; ">
+    <button mat-stroked-button color="primary" (click)="slickController.prev()">Previous</button> &nbsp;&nbsp;&nbsp;
+    <!-- <button mat-stroked-button (click)="slickController.play()">Play</button> &nbsp;
+    <button mat-stroked-button (click)="slickController.pause()">Pause</button> &nbsp;&nbsp;&nbsp; -->
+    <button mat-stroked-button color="primary" (click)="slickController.next()">Next</button>
+
+
+  </div>
+
+</div>
+
+
+<!-- <pre>
+  config: {{ config | json}}
+</pre>
+ -->

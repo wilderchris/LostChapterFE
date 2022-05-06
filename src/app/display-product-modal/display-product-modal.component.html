@@ -1,0 +1,134 @@
+<div class="display-product">
+  <br>
+  <mat-dialog-content >
+    <div class="container" style="display: flex;">
+      <div style="width: 95%;">
+        <h4><strong>Book Information</strong></h4>
+        <mat-dialog-content>
+          <div style="display: flex; align-items: right; justify-content: right;">
+            <br>
+
+            <button style="background-color: rgb(160, 160, 231); color: rgb(0, 0, 0);" mat-raised-button
+              (click)="addBookReview(selectedProducts.bookId)"> Add Review </button> &nbsp;&nbsp;&nbsp;
+            <button style="background-color: blue; color: burlywood;" mat-raised-button
+              (click)="onCloseDisplayProduct()">Close</button>  &nbsp;&nbsp;&nbsp;
+      
+           
+          </div>
+        
+          
+        </mat-dialog-content>
+      </div>
+      <div style="flex-grow:1;" class="example-button-row" *ngIf="role==='Customer'">
+        <button mat-raised-button color="primary" (click)="onAddToCart(selectedProducts.bookId)"> {{addToCart}}
+          <i class="material-icons">shopping_cart</i></button>
+      </div>
+      <div style="flex-grow:1;" class="example-button-row" *ngIf="role==='Admin'">
+        <button mat-raised-button color="primary" (click)="onCloseDisplayProduct()" a
+          routerLink="/admin/book/{{selectedProducts.bookId}}"> Update Book
+        </button>
+      </div>
+      <div *ngIf="errorMessage" id="error-message" class="text-danger">
+        {{ errorMessage }}
+      </div>
+    </div>
+
+    <hr>
+  </mat-dialog-content>
+
+  <section id="product-info">
+    <div class="item-image-parent">
+      <div class="item-list-vertical">
+        <div class="thumb-box">
+          <img [src]="selectedProducts?.bookImage">
+        </div>
+
+        <div class="thumb-box">
+          <img [src]="selectedProducts?.bookImage">
+        </div>
+
+        <div class="thumb-box">
+          <img [src]="selectedProducts?.bookImage">
+        </div>
+
+        <div class="thumb-box">
+          <img [src]="selectedProducts?.bookImage">
+        </div>
+
+      </div>
+
+      <div class="item-image-main">
+        <img [src]="selectedProducts?.bookImage">
+
+      </div>
+    </div>
+
+    <div class="item-info-parent">
+      <div class="main-info">
+        <h4>{{selectedProducts?.bookName}}</h4>
+        <h3>By: <span id="author"> <strong style="color: burlywood;">{{selectedProducts?.author}}</strong> </span>
+          (Author)</h3>
+
+        <h3>ISBN: <span id="isbn" style="color: burlywood;"> <strong>{{selectedProducts?.isbn}}</strong> </span></h3>
+        <h3>Edition: <span id="edition" style="color: burlywood;"><strong>{{selectedProducts?.edition}}</strong> </span>
+        </h3>
+        <h3>Price: <span style="color: burlywood;">${{selectedProducts?.bookPrice}}</span></h3>
+        <div *ngIf="selectedProducts?.saleIsActive === true">
+          <h3>Sales Price: <span id="price">${{(selectedProducts.bookPrice - (selectedProducts.bookPrice *
+              selectedProducts.saleDiscountRate)) | number:'1.2-2' }}</span></h3>
+        </div>
+
+
+          <label for="quantity">Qty:</label>
+          <select name="qty" id="qty" [(ngModel)]="quantity">
+            <option selected>0</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=1">1</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=2">2</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=3">3</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=4">4</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=5">5</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=6">6</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=7">7</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=8">8</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=9">9</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=10">10</option>
+          </select>
+          <button id="add" *ngIf="quantity>0 " style="background-color: #F46036;  margin: 1em ;color: black;" mat-raised-button (click)="  onAddToCart(selectedProducts.bookId)" >Add To Cart</button>
+
+
+          <h2 *ngIf="selectedProducts.quantityOnHand! == 0">This book is out of stock.</h2>
+        <hr>
+
+        <h4>Description</h4> <br>
+        <div
+          style="overflow-wrap: break-word; word-wrap: break-word; hyphens: auto; padding-right: 12px; margin: 0 auto; max-width: fit-content;">
+          <strong>
+            <h3 style="color: burlywood;">{{selectedProducts?.synopsis}}</h3>
+          </strong>
+        </div>
+        <hr>
+        <br>
+        <!-- <strong>
+          <div style="color: green; size: 28px; font-family: 'Times New Roman', Times, serif;" *ngIf="added"
+            id="success-message">{{addedToCart}}</div>
+        </strong> -->
+
+  
+  
+  <!-- <br> -->
+
+    <mat-dialog-content>
+      <div style="display: flex; align-items: right; justify-content: right;">
+        <br>
+        
+       
+       
+     </div>
+    </mat-dialog-content>
+
+
+<div class  = "review-container">
+ <h2 class="titleRev">{{ selectedProducts.bookName }} Reviews</h2>
+ <app-reviewcard class="mSliderDiv mb-5" *ngFor="let eachReview of reviews"   [review2]="eachReview">
+ </app-reviewcard>
+</div>

@@ -1,0 +1,109 @@
+<app-indexnavbar></app-indexnavbar>
+<body style="color: bisque">
+  <div class="container" style="width: auto">
+    <strong> <h1 style="text-align: center; color: black">Profile</h1></strong>
+    <table>
+      <tr>
+        <td>
+          <section>
+            <label for="fileToUpload">
+              <i class="fa fa-camera"></i>
+              <input
+                type="file"
+                id="fileToUpload"
+                style="visibility: hidden"
+                accept=".png,.jpg,jpeg,.PNG,.JPEG"
+                name="fileToUpload"
+              />
+            </label>
+            <img
+              src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b3BlbiUyMGJvb2t8ZW58MHx8MHx8&w=1000&q=80"
+            />
+          </section>
+          <h1>{{ loggedInUser.username }}</h1>
+          <!--full Arsene Wengername-->
+          <h3>{{ loggedInUser.role }}</h3>
+          <!--role should go here-->
+        </td>
+        <td>
+          <ul>
+            <li>
+              <b>First Name</b> &nbsp;&nbsp;
+              <input
+                type="text"
+                name="fullname"
+                id="fullname"
+                required
+                [(ngModel)]="loggedInUser.firstName"
+              />
+            </li>
+            <li>
+              <b>Last Name</b> &nbsp;&nbsp;
+              <input
+                type="text"
+                name="fullname"
+                id="fullname"
+                [(ngModel)]="loggedInUser.lastName"
+              />
+            </li>
+            <li>
+              <b>Email</b> &nbsp;&nbsp;
+              <input
+                type="email"
+                name="email"
+                id="email"
+                [(ngModel)]="loggedInUser.email"
+                required
+              />
+            </li>
+            <li>
+              <b>Role</b> &nbsp;&nbsp;
+              <input
+                type="text"
+                name="role"
+                id="role"
+                [(ngModel)]="loggedInUser.role"
+                required
+              />
+            </li>
+            <li>
+              <b>Age</b> &nbsp;&nbsp;
+              <input type="text" placeholder={{loggedInUser.birthday|age}}> 
+            </li>
+            <li>
+              <b>Username</b> &nbsp;&nbsp;
+              <input
+                name="username"
+                type="text"
+                id="username"
+                [(ngModel)]="loggedInUser.username"
+                required
+              />
+            </li>
+            <!-- <li>
+              <b>Address</b> &nbsp;&nbsp;
+              <input
+                name="address"
+                type="text"
+                id="address"
+                [(ngModel)]="currentUser.address"
+                required
+              />
+            </li> -->
+          </ul>
+          <button
+            mat-raised-button
+            color="primary"
+            style="float: right"
+            (click)="onUpdateClick()"
+          >
+            Update Profile
+          </button>
+          <div style="color: green;">{{ successMessage }}</div>
+          <div style="color: red;">{{ errorMessage }}</div>
+
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>

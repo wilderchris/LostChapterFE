@@ -1,0 +1,19 @@
+.review-card {
+    background-color: var(--background-tertiary);
+    font-family: sans-serif;
+  background-color: var(--background-tertiary);
+  color: var(--foreground-quaternary);
+  box-shadow: var(--background-tertiary-shadow);
+  width: 100%;
+ text-align: center;
+ margin-bottom: 1em;
+}
+.reviewText{
+  font-size:large;
+}
+.reviewRating {
+  font-size: medium;
+}
+/* .review-card{
+  padding: 4px;
+} */

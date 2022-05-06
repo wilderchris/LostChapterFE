@@ -1,0 +1,12 @@
+.container {
+  /* important for dark/light mode */
+  background: var(--background-light);
+  color: var(--foreground-tertiary);
+  box-shadow: var(--background-tertiary-shadow);
+
+}
+.header-title {
+  display: flex;
+  justify-content: center;
+}
+

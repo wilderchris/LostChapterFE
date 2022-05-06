@@ -1,0 +1,19 @@
+
+<input type="text" [(ngModel)]="title"> <!-- two-way binding -->
+<button type="button" (click)="getBook()">Get Book</button> <!-- event binding -->
+
+<h3>{{ apiBook.title }}</h3> <!-- interpolation -->
+<h2></h2> <!-- property binding on the src property -->
+<br>
+<!-- here we use a structural directive, interpolation, and the appTypeColor attribute directive -->
+types: <span appTypeColor *ngFor="let title of apiBook.title ">{{ title }} </span><br>
+abilities:
+<ul>
+    <li *ngFor="let ability of apiBook.authorName">{{ ability  }}</li>
+</ul>
+
+moves:
+<!-- <input type="text" [(ngModel)]="searchText"> -->
+<ul>
+    <li *ngFor="let year of apiBook.publishYear ">{{ year }}</li>
+</ul>
